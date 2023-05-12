@@ -1,12 +1,25 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 @Entity()
 export class Categories extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({default: true})
+  @Column({ default: true })
   active: boolean;
 
-  @Column({nullable: false})
+  @Column({ nullable: false })
   description: string;
+
+  @CreateDateColumn()
+  create: Date;
+
+  @UpdateDateColumn()
+  updated: Date;
 }

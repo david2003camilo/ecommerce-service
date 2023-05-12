@@ -3,7 +3,7 @@ import { ResponseDTO } from "../entity/response/Response";
 export const responseUtil = (
   status: number,
   message: string,
-  data?: any[],
+  data?: any[] | Object,
   token?: string
 ): ResponseDTO => {
   const res = new ResponseDTO();

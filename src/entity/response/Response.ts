@@ -1,6 +1,6 @@
 export class ResponseDTO {
     message: string;
     status: number;
-    data: any[];
+    data: any[] | object;
     token?: string;
 }
