@@ -47,11 +47,16 @@ const saveProducts = async (req: Request, res: Response) => {
 const getProducts = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
-    const { idCategory } = req.query;
+    const { idCategory, page, limit } = req.query;
+    if (Number(page) === 0) {
+      response = responseUtil(402, "Payment required the page major of 0");
+      return res.status(response.status).json(response);
+    }
 
-    response = await get(Number(idCategory));
+    response = await get(Number(idCategory), Number(page) - 1, Number(limit));
     return res.status(response.status).json(response);
   } catch (error) {
+    console.error(error);
     response = responseUtil(500, "Error internal");
     return res.status(response.status).json(response);
   }
@@ -111,4 +116,10 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-export { saveProducts, getProducts, updateProduct, getProductById, deleteProduct };
+export {
+  saveProducts,
+  getProducts,
+  updateProduct,
+  getProductById,
+  deleteProduct,
+};

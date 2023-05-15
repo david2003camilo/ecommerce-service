@@ -1,15 +1,23 @@
 import { Products } from "../entity/Products";
-import { responseUtil } from "../helper/handlerResponse";
+import { getTotalPage } from "../helper/handlerGetTotalPage";
+import { responsePageUtil, responseUtil } from "../helper/handlerResponse";
 
 const save = async (products: Products) => {
   const product = await products.save();
   return responseUtil(200, "Created product", product);
 };
 
-const get = async (idCategory: number) => {
-  const products = await Products.findBy({ categoryId: idCategory });
-  return products.length > 0
-    ? responseUtil(200, "Get products", products)
+const get = async (idCategory: number, page: number, limit: number) => {
+  const [result, total] = await Products.findAndCount({
+    skip: page * limit,
+    take: limit,
+    where: { categoryId: idCategory },
+  });
+
+  const totalPage = getTotalPage(total, limit);
+
+  return result
+    ? responsePageUtil(200, "Get products", result, page + 1, limit, totalPage)
     : responseUtil(404, "Not found product");
 };
 
@@ -31,8 +39,8 @@ const productById = async (id: number) => {
 };
 
 const deleteProductById = async (id: number) => {
-  await Products.delete({id: id});
+  await Products.delete({ id: id });
   return responseUtil(204, "Deleted product");
-}
+};
 
 export { save, get, update, productById, deleteProductById };
