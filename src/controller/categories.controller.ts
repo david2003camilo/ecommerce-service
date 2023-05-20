@@ -15,7 +15,7 @@ export const getAllCategories = async (req: Request, res: Response) => {
     const response = await getCategories();
     return res.status(response.status).json(response);
   } catch (error) {
-    response = responseUtil(500, "Error internal", []);
+    response = responseUtil(500, "Error internal");
     return res.status(response.status).json(response);
   }
 };
@@ -30,7 +30,7 @@ export const save = async (req: Request, res: Response) => {
     const response = await saveCategories(category, token);
     return res.status(response.status).json(response);
   } catch (error) {
-    response = responseUtil(500, "Error internal", []);
+    response = responseUtil(500, "Error internal");
     return res.status(500).json(response);
   }
 };

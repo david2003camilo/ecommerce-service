@@ -3,19 +3,21 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+
 @Entity()
-export class Categories extends BaseEntity {
+export class Photos extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: true })
-  active: boolean;
-
   @Column({ nullable: false })
-  description: string;
+  photo: string;
+
+  @Column({ nullable: false, default: true })
+  active: Boolean;
 
   @CreateDateColumn()
   create: Date;
