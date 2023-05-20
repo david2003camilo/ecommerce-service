@@ -13,11 +13,13 @@ import {
   productById,
   deleteProductById,
 } from "../service/ProductService";
+import { Photos } from "../entity/Photos";
+import { Categories } from "../entity/Categories";
 
 const saveProducts = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
-    const { name, price, discount, categoryId } = req.body;
+    const { name, price, discount, category, photo, isDiscount } = req.body;
     const token = getToken(req);
 
     response = verifyJwt(token);
@@ -25,15 +27,24 @@ const saveProducts = async (req: Request, res: Response) => {
       return res.status(response.status).json(response);
     }
 
+    const photos = new Photos();
+    photos.photo = photo.photo;
+    photos.active = true;
+
+    const categories = new Categories();
+    categories.id = category.id;
+    categories.active = category.active;
+    categories.description = category.description;
+    
     const product = new Products();
     product.name = name;
     product.price = price;
-    product.categoryId = categoryId;
+    product.category = categories;
 
-    if (discount) {
-      product.discount = discount;
-      product.isDiscount = true;
-    }
+    product.photo = photos;
+
+    product.discount = discount ? discount : 0;
+    product.isDiscount = isDiscount ? true : false;
 
     response = await save(product);
 
@@ -78,16 +89,16 @@ const updateProduct = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
     const { id } = req.params;
-    const { name, price, discount, isDiscount, categoryId, active } = req.body;
+    const { name, price, discount, isDiscount, category, active } = req.body;
     const token = getToken(req);
 
     const product = new Products();
     product.id = Number(id);
     product.name = name;
     product.price = price;
-    product.discount = discount;
-    product.isDiscount = isDiscount;
-    product.categoryId = categoryId;
+    product.discount = discount ? discount : 0;
+    product.isDiscount = isDiscount ? isDiscount : false;
+    product.category = category;
     product.active = active;
 
     response = verifyJwt(token);

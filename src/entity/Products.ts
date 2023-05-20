@@ -3,15 +3,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Categories } from "./Categories";
+import { Photos } from "./Photos";
 
 // A product can have categories
 @Entity()
-export class Products extends BaseEntity{
+export class Products extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,9 +30,19 @@ export class Products extends BaseEntity{
   @Column({ default: false, nullable: false })
   isDiscount: boolean;
 
-  @Column()
-  @OneToOne(() => Categories, (categories) => categories.id)
-  categoryId: number;
+  @ManyToOne((type) => Categories, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn({ name : "category_id"})
+  category: Categories;
+
+  @OneToOne((type) => Photos, {
+    eager: true, /// Get the join of other table
+    cascade: true,
+  })
+  @JoinColumn({ name: "photo_id" })
+  photo: Photos;
 
   @Column({ default: true, nullable: false })
   active: boolean;

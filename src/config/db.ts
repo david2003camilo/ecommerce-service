@@ -4,6 +4,7 @@ import { env } from "../config/env";
 import { Users } from "../entity/Users";
 import { Categories } from "../entity/Categories";
 import { Products } from "../entity/Products";
+import { Photos } from "../entity/Photos";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -14,5 +15,5 @@ export const AppDataSource = new DataSource({
   database: env.DATABASE,
   synchronize: true,
   logging: true,
-  entities: [Users, Categories, Products],
+  entities: [Users, Categories, Products, Photos],
 });

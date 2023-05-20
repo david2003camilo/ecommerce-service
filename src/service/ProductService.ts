@@ -1,3 +1,4 @@
+import { Categories } from "../entity/Categories";
 import { Products } from "../entity/Products";
 import { getTotalPage } from "../helper/handlerGetTotalPage";
 import { responsePageUtil, responseUtil } from "../helper/handlerResponse";
@@ -7,11 +8,18 @@ const save = async (products: Products) => {
   return responseUtil(200, "Created product", product);
 };
 
-const get = async (idCategory: number, page: number, limit: number) => {
+const get = async (category: number, page: number, limit: number) => {
   const [result, total] = await Products.findAndCount({
     skip: page * limit,
     take: limit,
-    where: { categoryId: idCategory },
+    relations: {
+      category: true,
+    },
+    where: {
+      category: {
+        id: category,
+      },
+    },
   });
 
   const totalPage = getTotalPage(total, limit);
