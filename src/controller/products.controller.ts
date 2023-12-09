@@ -58,7 +58,7 @@ const saveProducts = async (req: Request, res: Response) => {
 const getProducts = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
-    const { idCategory, page, limit } = req.query;
+    const { idCategory, page, limit} = req.query;
     if (Number(page) === 0) {
       response = responseUtil(402, "Payment required the page major of 0");
       return res.status(response.status).json(response);

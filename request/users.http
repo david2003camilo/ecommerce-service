@@ -1,0 +1,9 @@
+POST http://127.0.0.1:9090/users HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Camilo",
+    "lastName": "Chico",
+    "email": "admin@gmail.com",
+    "password": "1234"
+}

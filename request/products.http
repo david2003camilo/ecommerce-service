@@ -1,0 +1,21 @@
+GET http://127.0.0.1:9090/products?idCategory=1&page=1&limit=10
+
+###
+POST http://127.0.0.1:9090/products
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FtaWxvIiwibGFzdE5hbWUiOiJDaGljbyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcwMjA5NDU1MjkxNCwiaWF0IjoxNzAyMDg4NTUyfQ.TgC4qEXEN-Gj5pyRqU-SxfSjVMN-9hmoRyg39Xa_0AI
+
+{
+    "name": "Tv",
+    "price": 200,
+    "discount": 0,
+    "category": {
+        "id":1,
+        "active": true,
+        "description": "household appliance"
+    },
+    "photo": {
+        "photo": ""
+    },
+    "isDiscount": false
+}
