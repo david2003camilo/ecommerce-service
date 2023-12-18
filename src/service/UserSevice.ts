@@ -1,7 +1,9 @@
 import { Users } from "../entity/Users";
 import { compare, encrypt } from "../helper/handlerBcryptjs";
-import { signJwt, verifyJwt } from "../helper/handlerJwt";
+import { signJwt } from "../helper/handlerJwt";
 import { responseUtil } from "../helper/handlerResponse";
+
+/* TODO: Add repository for consult */
 
 const createUser = async (user: Users) => {
   /* ENCRYPTED PASSWORD */
@@ -13,13 +15,7 @@ const createUser = async (user: Users) => {
   return isSave;
 };
 
-const updateUsers = async (token: string, email: string, body: any) => {
-  const isVerify = verifyJwt(token);
-
-  if (isVerify.status == 403) {
-    return isVerify;
-  }
-
+const updateUsers = async (email: string, body: any) => {
   const user = Users.findOneBy({ email: email });
   if (!user) {
     return responseUtil(404, "Not found user", []);

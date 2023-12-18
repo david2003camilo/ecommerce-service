@@ -1,4 +1,3 @@
-import { Categories } from "../entity/Categories";
 import { Products } from "../entity/Products";
 import { getTotalPage } from "../helper/handlerGetTotalPage";
 import { responsePageUtil, responseUtil } from "../helper/handlerResponse";

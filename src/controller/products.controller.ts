@@ -4,8 +4,6 @@ import { Products } from "../entity/Products";
 import { ResponseDTO } from "../entity/response/Response";
 import { responseUtil } from "../helper/handlerResponse";
 
-import { getToken } from "../helper/handlerToken";
-import { verifyJwt } from "../helper/handlerJwt";
 import {
   save,
   get,
@@ -20,12 +18,6 @@ const saveProducts = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
     const { name, price, discount, category, photo, isDiscount } = req.body;
-    const token = getToken(req);
-
-    response = verifyJwt(token);
-    if (response.status == 403) {
-      return res.status(response.status).json(response);
-    }
 
     const photos = new Photos();
     photos.photo = photo.photo;
@@ -90,7 +82,6 @@ const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { name, price, discount, isDiscount, category, active } = req.body;
-    const token = getToken(req);
 
     const product = new Products();
     product.id = Number(id);
@@ -101,10 +92,6 @@ const updateProduct = async (req: Request, res: Response) => {
     product.category = category;
     product.active = active;
 
-    response = verifyJwt(token);
-    if (response.status == 403) {
-      return res.status(response.status).json(response);
-    }
 
     response = await update(product);
 

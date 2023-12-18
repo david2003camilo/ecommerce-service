@@ -24,10 +24,9 @@ export const save = async (req: Request, res: Response) => {
   let response: ResponseDTO;
   try {
     const { description } = req.body;
-    const token = getToken(req);
     const category = new Categories();
     category.description = description;
-    const response = await saveCategories(category, token);
+    const response = await saveCategories(category);
     return res.status(response.status).json(response);
   } catch (error) {
     response = responseUtil(500, "Error internal");

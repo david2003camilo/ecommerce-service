@@ -1,42 +1,56 @@
 import jwt from "jsonwebtoken";
+import moment from "moment";
 
 import { Users } from "../entity/Users";
 import { env } from "../config/env";
 import { ResponseDTO } from "../entity/response/Response";
 import { responseUtil } from "./handlerResponse";
 
+interface UserJwt {
+  id: number;
+  name: string;
+  lastName: string;
+  role: string;
+  exp: Date;
+}
+
 const signJwt = (user: Users) => {
-  const key = env.SECRET ? env.SECRET : "";
+  const jwtSecret = env.SECRET ? env.SECRET : "";
   const token = jwt.sign(
     {
+      id: user.id,
       name: user.firstName,
       lastName: user.lastName,
       role: user.role,
       exp: Date.now() + 60 * 100000,
     },
-    key
+    jwtSecret
   );
   return token;
 };
 
-const verifyJwt = (token: string, client?: boolean) => {
-  const key = env.SECRET ? env.SECRET : "";
-  let response: ResponseDTO = new ResponseDTO();
-  jwt.verify(token, key, (error: any, user: any) => {
-    if (error) {
-      return (response = responseUtil(403, "Not authorized", []));
+const verifyJwt = async (token: string, client?: boolean) => {
+  try {
+    const jwtSecret = env.SECRET ? env.SECRET : "";
+    const decoded = jwt.verify(token, jwtSecret) as unknown as UserJwt;
+  
+    if (!decoded) {
+      return responseUtil(401, "Not authorized", []);
     }
-    if (Date.now() > user.exp) {
-      return (response = responseUtil(403, "Token expired", []));
+    if (moment().unix() > moment(decoded.exp).unix()) {
+      return responseUtil(401, "Token expired", []);
     }
-
-    if (client && user.role != "ADMIN") {
-      return (response = responseUtil(403, "Not authorized", []));
+  
+    if (!client && decoded != null) {
+      const user = await Users.findOneBy({ id: decoded.id });
+      if (user?.role != "ADMIN")
+        return responseUtil(403, "unauthorized permission", []);
     }
-
-    response = responseUtil(200, "Accepted", user);
-  });
-  return response;
+  
+    return responseUtil(200, "Accepted"); 
+  } catch (error) {
+    return responseUtil(401, "Not authorized", []);
+  }
 };
 
 export { signJwt, verifyJwt };

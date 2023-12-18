@@ -1,6 +1,6 @@
 POST http://127.0.0.1:9090/categories HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQ2FtaWxvIiwibGFzdE5hbWUiOiJDaGljbyIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTcwMjA5NDU1MjkxNCwiaWF0IjoxNzAyMDg4NTUyfQ.TgC4qEXEN-Gj5pyRqU-SxfSjVMN-9hmoRyg39Xa_0AI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQ0xJRU5UIiwiZXhwIjoxNzAyODgwMDY0MDc4LCJpYXQiOjE3MDI4NzQwNjR9.QYv1PKoS0GlJbhoIDkQsnLXQW8JztSHNuVVLSIbr67I
 
 {
     "description": "household appliance"

@@ -5,7 +5,6 @@ import { ResponseDTO } from "../entity/response/Response";
 
 import { createUser, updateUsers } from "../service/UserSevice";
 import { responseUtil } from "../helper/handlerResponse";
-import { getToken } from "../helper/handlerToken";
 
 const registerUser = async (req: Request, res: Response) => {
   let response: ResponseDTO;
@@ -44,8 +43,7 @@ const updateUser = async (req: Request, res: Response) => {
   try {
     const { email } = req.params;
     const body = req.body;
-    const token = getToken(req);
-    response = await updateUsers(token, email, body);
+    response = await updateUsers(email, body);
 
     return res.status(response.status).json(response);
   } catch (error) {
