@@ -21,6 +21,8 @@ services:
       - ./.env
     ports:
       - ${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}
+    volumes:
+      - .:/usr/src/app
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_USER=${POSTGRES_USERNAMEDB}

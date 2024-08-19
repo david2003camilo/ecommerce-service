@@ -4,7 +4,7 @@
   "description": "App of sales",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,7 +30,8 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.1.0",
     "bcryptjs": "^2.4.3",
-    "ts-node-dev": "^2.0.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.4"
   }
 }
