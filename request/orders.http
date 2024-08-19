@@ -1,0 +1,8 @@
+GET http://127.0.0.1:9090/orders?page=1&limit=10
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQwNDU1MDg1MDUsImlhdCI6MTcyNDAzOTUwOH0.QsDKK9jCpuHxVSoHFOc_maDBXirHRkQoGBCPPT71zRI
+
+### Get detail for id of the order
+GET http://127.0.0.1:9090/order/detail/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQwNDU1MDg1MDUsImlhdCI6MTcyNDAzOTUwOH0.QsDKK9jCpuHxVSoHFOc_maDBXirHRkQoGBCPPT71zRI

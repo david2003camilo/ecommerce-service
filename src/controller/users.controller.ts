@@ -28,8 +28,7 @@ const registerUser = async (req: Request, res: Response) => {
         return res.status(response.status).json(response);
       })
       .catch(() => {
-        response.message = "Error not save user";
-        response.status = 500;
+        response = responseUtil(500, "Error not save user", null);
         return res.status(response.status).json(response);
       });
   } catch (error) {

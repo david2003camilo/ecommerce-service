@@ -34,7 +34,10 @@ const updateUsers = async (email: string, body: any) => {
 
 const sign = async (email: string, password: string) => {
   /*Get  user for email */
-  const user = await Users.findOneBy({ email: email });
+  const user = await Users.findOne({
+    where: { email: email },
+    select: [ "id", "role","password", "firstName", "lastName"],
+  });
 
   if (!user) {
     return responseUtil(404, "Not found user", []);

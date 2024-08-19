@@ -2,11 +2,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export const env = Object.freeze({
-  PORT: process.env.PORT || 3000,
-  SECRET: process.env.SECRET || "",
-  HOST: process.env.HOST || "localhost",
-  USERNAME: process.env.USERNAMEDB || "",
-  PASSWORD: process.env.PASSWORD || "",
-  DATABASE: process.env.DATABASE || "ecommerce",
-  PORTDB: process.env.PORTDB || 5432,
+  PORT: process.env.NODE_LOCAL_PORT || 3000,
+  SECRET: process.env.JWT_SECRET || "",
+  HOST: process.env.POSTGRES_HOST || "localhost",
+  USERNAME: process.env.POSTGRES_USERNAMEDB || "",
+  PASSWORD: process.env.POSTGRES_PASSWORD || "",
+  DATABASE: process.env.POSTGRES_DATABASE || "ecommerce",
+  PORTDB: process.env.POSTGRES_PORTDB || 5432,
 });

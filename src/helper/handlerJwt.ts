@@ -33,7 +33,6 @@ const verifyJwt = async (token: string, client?: boolean) => {
   try {
     const jwtSecret = env.SECRET ? env.SECRET : "";
     const decoded = jwt.verify(token, jwtSecret) as unknown as UserJwt;
-  
     if (!decoded) {
       return responseUtil(401, "Not authorized", []);
     }
@@ -53,4 +52,9 @@ const verifyJwt = async (token: string, client?: boolean) => {
   }
 };
 
-export { signJwt, verifyJwt };
+const decodeToken = (token: string): UserJwt => {
+  const decoded = jwt.decode(token);
+  return decoded as unknown as UserJwt;
+} 
+
+export { signJwt, verifyJwt, decodeToken };

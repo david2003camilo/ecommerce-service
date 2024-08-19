@@ -10,6 +10,6 @@ const router = Router();
 
 router.get("/categories", getAllCategories);
 router.post("/categories",authAdminMiddleware ,save);
-router.put("/categories/:id", update);
+router.put("/categories/:id", authAdminMiddleware, update);
 
 export default router;

@@ -8,7 +8,7 @@ const authAdminMiddleware = async (req: Request, res: Response, next: NextFuncti
   /* If not access finish process */
   if (isVerify.status == 403 || isVerify.status == 401) {
     res.status(isVerify.status);
-    res.send(isVerify);
+    res.json(isVerify);
     return;
   }
   next();
