@@ -1,3 +1,4 @@
+import { In } from "typeorm";
 import { Products } from "../entity/Products";
 import { getTotalPage } from "../helper/handlerGetTotalPage";
 import { responsePageUtil, responseUtil } from "../helper/handlerResponse";
@@ -50,4 +51,9 @@ const deleteProductById = async (id: number) => {
   return responseUtil(204, "Deleted product");
 };
 
-export { save, get, update, productById, deleteProductById };
+const productByIds = async (id: number[]): Promise<Products[]> => {
+  const product = await Products.findBy({ id: In(id) });
+  return product;
+};
+
+export { save, get, update, productById, deleteProductById, productByIds };

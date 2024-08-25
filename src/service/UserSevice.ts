@@ -32,6 +32,11 @@ const updateUsers = async (email: string, body: any) => {
   return responseUtil(204, "User update", []);
 };
 
+const findUserById = async (id: number) => {
+  const user = await Users.findOneBy({ id: id });
+  return user;
+};
+
 const sign = async (email: string, password: string) => {
   /*Get  user for email */
   const user = await Users.findOne({
@@ -64,4 +69,4 @@ const sign = async (email: string, password: string) => {
   );
 };
 
-export { createUser, sign, updateUsers };
+export { createUser, sign, updateUsers, findUserById };

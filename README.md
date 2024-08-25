@@ -27,6 +27,11 @@ Run `npm run dev` for a dev server. The application will automatically reload if
 ## Development data base with docker
 Run `docker-compose up` for a dev db. The db will automatically create database and server project
 
+
+## Development show log
+
+Run ` docker logs -f  [id-container]` for get log the server
+
 ## Destroy data base in docker
 
 Run `docker-compose down` for stop db and server. The db wiil automatically delete container of docker

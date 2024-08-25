@@ -3,6 +3,56 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQwNDU1MDg1MDUsImlhdCI6MTcyNDAzOTUwOH0.QsDKK9jCpuHxVSoHFOc_maDBXirHRkQoGBCPPT71zRI
 
 ### Get detail for id of the order
-GET http://127.0.0.1:9090/order/detail/1
+GET http://127.0.0.1:9090/order/detail/9
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQwNDU1MDg1MDUsImlhdCI6MTcyNDAzOTUwOH0.QsDKK9jCpuHxVSoHFOc_maDBXirHRkQoGBCPPT71zRI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQ1NjMxNzU1MTEsImlhdCI6MTcyNDU1NzE3NX0.MMUP0tVhnqU_JlBiIyx2QmrMZq_AZAin4PfuU0-yfb4
+
+### Create order
+POST http://127.0.0.1:9090/orders
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3MjQ1NjMxNzU1MTEsImlhdCI6MTcyNDU1NzE3NX0.MMUP0tVhnqU_JlBiIyx2QmrMZq_AZAin4PfuU0-yfb4
+
+[
+    {
+        "product": {
+            "id": 1,
+            "name": "Tv",
+            "price": 200,
+            "discount": 0,
+            "isDiscount": false,
+            "active": true,
+            "create": "2024-08-19T22:10:03.335Z",
+            "updated": "2024-08-19T22:10:03.335Z",
+            "category": {
+                "id": 1,
+                "active": true,
+                "description": "household appliance",
+                "create": "2024-08-19T22:09:38.281Z",
+                "updated": "2024-08-19T22:09:38.281Z"
+            }
+        },
+        "amount": 33
+    },
+    {
+        "product": {
+            "id": 2,
+            "name": "Display",
+            "price": 200,
+            "discount": 0,
+            "isDiscount": false,
+            "active": true,
+            "create": "2024-08-25T04:28:16.824Z",
+            "updated": "2024-08-25T04:28:16.824Z",
+            "category": {
+                "id": 1,
+                "active": true,
+                "description": "household appliance",
+                "create": "2024-08-19T22:09:38.281Z",
+                "updated": "2024-08-19T22:09:38.281Z"
+            }
+        },
+        "amount": 2
+    }
+
+
+]
