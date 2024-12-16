@@ -1,6 +1,5 @@
 import { OrderDetails } from "../entity/OrderDetails";
 import { Orders } from "../entity/Orders";
-import { Products } from "../entity/Products";
 import { OrderDto } from "../entity/request/OrderDto";
 import { ResponseDTO } from "../entity/response/Response";
 import { getTotalPage } from "../helper/handlerGetTotalPage";
