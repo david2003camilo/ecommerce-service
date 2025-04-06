@@ -15,7 +15,7 @@ const saveCategories = async (category: Categories) => {
   return responseUtil(203, "Category created", [category]);
 };
 
-const updateCategories = async (category: Categories, token: string) => {
+const updateCategories = async (category: Categories) => {
   const categories = await Categories.findOneBy({ id: category.id });
   /* return if not exist data */
   if (!categories) return responseUtil(404, "Not found category");

@@ -3,7 +3,6 @@ import moment from "moment";
 
 import { Users } from "../entity/Users";
 import { env } from "../config/env";
-import { ResponseDTO } from "../entity/response/Response";
 import { responseUtil } from "./handlerResponse";
 
 interface UserJwt {

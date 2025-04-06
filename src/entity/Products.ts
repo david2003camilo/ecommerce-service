@@ -30,14 +30,14 @@ export class Products extends BaseEntity {
   @Column({ default: false, nullable: false })
   isDiscount: boolean;
 
-  @ManyToOne((type) => Categories, {
+  @ManyToOne(() => Categories, {
     eager: true,
     cascade: true,
   })
   @JoinColumn({ name : "category_id"})
   category: Categories;
 
-  @OneToOne((type) => Photos, {
+  @OneToOne(() => Photos, {
     eager: true, /// Get the join of other table
     cascade: true,
   })

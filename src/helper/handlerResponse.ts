@@ -10,7 +10,7 @@ export const responseUtil = (
   res.status = status;
   res.message = message;
   res.data = data ? data : [];
-  res.token = token;
+  res.token = token || null;
   return res;
 };
 
@@ -26,8 +26,8 @@ export const responsePageUtil = (
   res.status = status;
   res.message = message;
   res.data = data ? data : [];
-  res.currentPage = page;
-  res.limit = limit;
-  res.totalPage = totalPage;
+  res.currentPage = page!;
+  res.limit = limit!;
+  res.totalPage = totalPage!;
   return res;
 };

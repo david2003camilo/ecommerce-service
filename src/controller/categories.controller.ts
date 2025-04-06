@@ -7,9 +7,7 @@ import {
 import { ResponseDTO } from "../entity/response/Response";
 import { responseUtil } from "../helper/handlerResponse";
 import { Categories } from "../entity/Categories";
-import { getToken } from "../helper/handlerToken";
-
-export const getAllCategories = async (req: Request, res: Response) => {
+export const getAllCategories = async (res: Response) => {
   let response: ResponseDTO;
   try {
     const response = await getCategories();
@@ -40,10 +38,9 @@ export const update = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { description } = req.body;
     const category = new Categories();
-    const token = getToken(req);
     category.id = Number(id);
     category.description = description;
-    response = await updateCategories(category, token);
+    response = await updateCategories(category);
     return res.status(response.status).json(response);
   } catch (error) {
     response = responseUtil(500, "Error internal");
