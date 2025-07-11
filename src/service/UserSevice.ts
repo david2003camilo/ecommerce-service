@@ -1,9 +1,10 @@
+import { AppDataSource } from "../config/db";
 import { Users } from "../entity/Users";
 import { compare, encrypt } from "../helper/handlerBcryptjs";
 import { signJwt } from "../helper/handlerJwt";
 import { responseUtil } from "../helper/handlerResponse";
 
-/* TODO: Add repository for consult */
+const userRepository = AppDataSource.getRepository(Users);
 
 const createUser = async (user: Users) => {
   /* ENCRYPTED PASSWORD */
@@ -11,11 +12,11 @@ const createUser = async (user: Users) => {
   user.password = passwordHash;
 
   /* SAVING USER */
-  const isSave = user.save();
-  return isSave;
+  const result = await userRepository.save(user);
+  return result;
 };
 
-const updateUsers = async (email: string, body: any) => {
+const updateUsers = async (email: string, body: Users) => {
   const user = Users.findOneBy({ email: email });
   if (!user) {
     return responseUtil(404, "Not found user", []);
@@ -41,7 +42,7 @@ const sign = async (email: string, password: string) => {
   /*Get  user for email */
   const user = await Users.findOne({
     where: { email: email },
-    select: [ "id", "role","password", "firstName", "lastName"],
+    select: ["id", "role", "password", "firstName", "lastName"],
   });
 
   if (!user) {

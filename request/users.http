@@ -1,9 +1,10 @@
 POST http://127.0.0.1:9090/users HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkNhbWlsbyIsImxhc3ROYW1lIjoiQ2hpY28iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NTIyMTQwOTQxMjIsImlhdCI6MTc1MjIwODA5NH0.UpyXPwQjlyEymA7p8kjV39Hh_ohmAQkE7bZHmkB5dUI
 
 {
     "firstName": "Camilo",
     "lastName": "Chico",
-    "email": "camilo@gmail.com",
+    "email": "camilo90@gmail.com",
     "password": "1234"
 }
